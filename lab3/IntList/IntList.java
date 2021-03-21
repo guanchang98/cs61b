@@ -108,6 +108,19 @@ public class IntList {
         return res;
     }
 
+    public static IntList reverse(IntList A) {
+        if (A == null || A.rest == null) return A;
+        IntList temp = null;
+        IntList last = null;
+        while (A != null) {
+            temp = A;
+            A = A.rest;
+            temp.rest = last;
+            last = temp;
+        }
+        return last;
+    }
+
 
 
 
