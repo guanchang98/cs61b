@@ -11,11 +11,11 @@ public class IntList {
     /**
      * First element of list.
      */
-    private int first;
+    public int first;
     /**
      * Remaining elements of list.
      */
-    private IntList rest;
+    public IntList rest;
 
     /**
      * A List with first FIRST0 and rest REST0.
@@ -81,6 +81,7 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
+        if (A == null) return null;
         IntList temp = A;
         while (temp.rest != null) {
             temp = temp.rest;
@@ -94,6 +95,7 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
+        if (A == null) return null;
         IntList res = new IntList(A.first, null);
         IntList temp1 = res;
         IntList temp2 = A;
@@ -105,28 +107,8 @@ public class IntList {
         temp1.rest = B;
         return res;
     }
-    /** iterative solution*/
-    /*public static IntList reverse(IntList A) {
-        IntList temp = null;
-        IntList last = null;
-        if (A == null || A.rest == null) return A;
-        while (A != null) {
-            temp = A;
-            A = A.rest;
-            temp.rest = last;
-            last = temp;
-        }
-        return last;
-    }*/
-    public static IntList reverse(IntList A) {
-        if (A == null || A.rest == null) {
-            return A;
-        }
-        IntList B = IntList.reverse(A.rest);
-        A.rest.rest = A;
-        A.rest = null;
-        return B;
-    }
+
+
 
 
 
