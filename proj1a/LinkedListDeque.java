@@ -19,6 +19,12 @@ public class LinkedListDeque<T> {
     }
 
     /** Gets a copy of the LinkedListDeque other*/
+    public LinkedListDeque(LinkedListDeque<T> other) {
+        size = 0;
+        for (int i = 0; i < other.size(); i++) {
+            addLast(other.get(i));
+        }
+    }
 
 
     /** Add an item of type T to the front of the deque*/
