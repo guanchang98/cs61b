@@ -3,7 +3,7 @@ public class LinkedListDeque<T> {
     private ListNode last;
     private int size;
     /* Helper ListNode class*/
-    private class ListNode {
+    public class ListNode {
         public T item;
         public ListNode next;
         public ListNode prev;

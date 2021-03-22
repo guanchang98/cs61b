@@ -9,14 +9,14 @@ public class ArrayDeque<T> {
         items = (T[]) new Object[8];
     }
 
-    /** Second constructor of array deque*/
+    /** Second constructor of array deque
     public ArrayDeque(ArrayDeque<T> other) {
         size = 0;
         items = (T[]) new Object[8];
         for (int i = 0; i < other.size(); i++) {
             items[i] = other.get(i);
         }
-    }
+    }*/
 
     /** Resize the array items*/
     private void resize(int cap) {
@@ -69,6 +69,9 @@ public class ArrayDeque<T> {
      * returns removed item
      * if no such item exists, return null*/
     public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         if (size < items.length / 4) {
             resize(items.length / 2);
         }
@@ -85,6 +88,9 @@ public class ArrayDeque<T> {
      * returns removed item
      * if no such item exists, return null*/
     public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
         if (size < items.length / 4) {
             resize(items.length / 2);
         }
