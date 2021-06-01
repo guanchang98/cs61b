@@ -25,13 +25,15 @@ public class ArrayDeque<T> {
     /** Resize the array items*/
     private void resize(int cap) {
         T[] temp = (T[]) new Object[cap];
-        System.arraycopy(items, 0, temp, cap / 2 - items.length / 2 + first, last - first + 1);
+        System.arraycopy(items, first, temp, cap / 2 - items.length / 2 + first, last - first + 1);
         items = temp;
+        first = cap / 2 - items.length / 2 + first;
+        last = cap / 2 - items.length / 2 + last;
     }
 
     /** Adds an item of type T to the front of the array deque*/
     public void addFirst(T item) {
-        if (first == 0) {
+        if (first < 0) {
             resize(items.length * 2);
         }
         items[first] = item;
@@ -62,7 +64,7 @@ public class ArrayDeque<T> {
     /** Print the items in the deque from first to last, separated by a space
      * Once all the items have been printed, print out a new line*/
      public void printDeque() {
-         for (int i = 0; i < size; i++) {
+         for (int i = first + 1; i < last; i++) {
              System.out.print(items[i] + "/t");
          }
          System.out.println();
@@ -78,8 +80,8 @@ public class ArrayDeque<T> {
         if (size < items.length / 4) {
             resize(items.length / 2);
         }
-        T res = items[first];
-        items[first] = null;
+        T res = items[first + 1];
+        items[first + 1] = null;
         size--;
         first++;
         return res;
@@ -95,8 +97,8 @@ public class ArrayDeque<T> {
         if (size < items.length / 4) {
             resize(items.length / 2);
         }
-        T res = items[last];
-        items[last] = null;
+        T res = items[last - 1];
+        items[last - 1] = null;
         size--;
         last--;
         return res;
@@ -106,7 +108,7 @@ public class ArrayDeque<T> {
      * if no such item exists, return null
      */
     public T get(int index) {
-        return items[index];
+        return items[first + 1 + index];
     }
 
 
