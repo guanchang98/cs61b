@@ -63,12 +63,13 @@ public class ArrayDeque<T> {
 
     /** Print the items in the deque from first to last, separated by a space
      * Once all the items have been printed, print out a new line*/
-     public void printDeque() {
-         for (int i = 0; i < items.length; i++) {
-             System.out.print(items[i] + "\t");
-         }
-         System.out.println();
-     }
+    public void printDeque() {
+        for (int i = 0; i < items.length; i++) {
+            System.out.print(items[i] + "\t");
+        }
+        System.out.println();
+    }
+
 
     /** Removes the first item of the deque
      * returns removed item

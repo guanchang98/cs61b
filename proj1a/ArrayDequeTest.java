@@ -1,4 +1,5 @@
 /** Performs some basic linked list tests. */
+
 public class ArrayDequeTest {
 
     /* Utility method for printing out empty checks. */
@@ -35,7 +36,6 @@ public class ArrayDequeTest {
      * && is the "and" operation. */
     public static void addIsEmptySizeTest() {
         System.out.println("Running add/isEmpty/Size test.");
-        //System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
         ArrayDeque<String> lld1 = new ArrayDeque<String>();
 
@@ -66,8 +66,6 @@ public class ArrayDequeTest {
 
         System.out.println("Running add/remove test.");
 
-        //System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-
         ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
         // should be empty
         boolean passed = checkEmpty(true, lld1.isEmpty());
@@ -85,7 +83,7 @@ public class ArrayDequeTest {
     }
 
     /** Test get iteratively and recursively*/
-    public static void TestGet() {
+    public static void testGet() {
         System.out.println("Running TestGet");
         ArrayDeque<Integer> lld1 = new ArrayDeque<>();
         lld1.addLast(0);
@@ -123,6 +121,6 @@ public class ArrayDequeTest {
         System.out.println("Running tests.\n");
         addIsEmptySizeTest();
         addRemoveTest();
-        TestGet();
+        testGet();
     }
 }

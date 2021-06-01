@@ -5,10 +5,10 @@ public class LinkedListDeque<T> {
     private int size;
     /* Helper ListNode class*/
     private class ListNode {
-        public T item;
-        public ListNode next;
-        public ListNode prev;
-        public ListNode(T item, ListNode next, ListNode prev) {
+        private T item;
+        private ListNode next;
+        private ListNode prev;
+        private ListNode(T item, ListNode next, ListNode prev) {
             this.item = item;
             this.next = next;
             this.prev = prev;
@@ -84,7 +84,9 @@ public class LinkedListDeque<T> {
      * If no such item exists, return null.
      */
     public T removeFirst() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
         if (size == 1) {
             T res = first.item;
             size--;
@@ -103,7 +105,9 @@ public class LinkedListDeque<T> {
      * If no such item exists, return null.
      */
     public T removeLast() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
         if (size == 1) {
             T res = last.item;
             size--;
@@ -122,8 +126,9 @@ public class LinkedListDeque<T> {
      * If no such item exists, return null.
      */
     public T get(int index) {
-        if (size <= index) return null;
-        else if (index < size / 2) {
+        if (size <= index) {
+            return null;
+        } else if (index < size / 2) {
             ListNode temp = first;
             while (index > 0) {
                 temp = temp.next;
@@ -142,12 +147,16 @@ public class LinkedListDeque<T> {
     /** Gets the item at the given index recursively*/
     public T getRecursive(int index) {
         ListNode tmp = first;
-        if (tmp == null) return null;
+        if (tmp == null) {
+            return null;
+        }
         return helperGet(index, tmp);
     }
-    private T helperGet(int index, ListNode first) {
-        if (index == 0) return first.item;
-        first = first.next;
-        return helperGet(index - 1, first);
+    private T helperGet(int index, ListNode f) {
+        if (index == 0) {
+            return f.item;
+        }
+        f = f.next;
+        return helperGet(index - 1, f);
     }
 }
