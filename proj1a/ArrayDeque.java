@@ -1,4 +1,4 @@
-public class ArrayDeque<T> {
+public class ArrayDeque<T> implements Deque<T> {
     /** Creates an empty array deque*/
     private int size;
     private int first;
@@ -32,6 +32,7 @@ public class ArrayDeque<T> {
     }
 
     /** Adds an item of type T to the front of the array deque*/
+    @Override
     public void addFirst(T item) {
         if (first < 0) {
             resize(items.length * 2);
@@ -42,6 +43,7 @@ public class ArrayDeque<T> {
     }
 
     /** Adds an item of type T to the back of the array deque*/
+    @Override
     public void addLast(T item) {
         if (last == items.length) {
             resize(items.length * 2);
@@ -57,12 +59,14 @@ public class ArrayDeque<T> {
     }
 
     /** Return the size of the array deque*/
+    @Override
     public int size() {
         return size;
     }
 
     /** Print the items in the deque from first to last, separated by a space
      * Once all the items have been printed, print out a new line*/
+    @Override
     public void printDeque() {
         for (int i = 0; i < items.length; i++) {
             System.out.print(items[i] + "\t");
@@ -74,6 +78,7 @@ public class ArrayDeque<T> {
     /** Removes the first item of the deque
      * returns removed item
      * if no such item exists, return null*/
+    @Override
     public T removeFirst() {
         if (size == 0) {
             return null;
@@ -92,6 +97,7 @@ public class ArrayDeque<T> {
     /** Removes the last item of the deque
      * returns removed item
      * if no such item exists, return null*/
+    @Override
     public T removeLast() {
         if (size == 0) {
             return null;
@@ -110,6 +116,7 @@ public class ArrayDeque<T> {
     /** Get the item at the given index
      * if no such item exists, return null
      */
+    @Override
     public T get(int index) {
         return items[first + 1 + index];
     }
