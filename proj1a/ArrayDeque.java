@@ -75,10 +75,10 @@ public class ArrayDeque<T> {
         if (size < items.length / 4) {
             resize(items.length / 2);
         }
+        T res = items[0];
         for (int i = 0; i < size - 1; i++) {
             items[i] = items[i + 1];
         }
-        T res = items[size - 1];
         items[size - 1] = null;
         size--;
         return res;
@@ -106,4 +106,9 @@ public class ArrayDeque<T> {
     public T get(int index) {
         return items[index];
     }
+
+    /** Get the item at the given index recursively*/
+    /*public T getRecursive(int index) {
+
+    }*/
 }
