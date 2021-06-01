@@ -4,7 +4,7 @@ public class LinkedListDeque<T> {
     private ListNode last;
     private int size;
     /* Helper ListNode class*/
-    public class ListNode {
+    private class ListNode {
         public T item;
         public ListNode next;
         public ListNode prev;
@@ -19,13 +19,14 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    /** Gets a copy of the LinkedListDeque other*/
+    /** Gets a copy of the LinkedListDeque other
     public LinkedListDeque(LinkedListDeque<T> other) {
         size = 0;
         for (int i = 0; i < other.size(); i++) {
             addLast(other.get(i));
         }
     }
+    */
 
 
     /** Add an item of type T to the front of the deque*/
@@ -85,8 +86,11 @@ public class LinkedListDeque<T> {
     public T removeFirst() {
         if (size == 0) return null;
         if (size == 1) {
+            T res = first.item;
             size--;
-            return null;
+            first = null;
+            last = null;
+            return res;
         }
         ListNode temp = first;
         first = first.next;
@@ -101,8 +105,11 @@ public class LinkedListDeque<T> {
     public T removeLast() {
         if (size == 0) return null;
         if (size == 1) {
+            T res = last.item;
             size--;
-            return null;
+            first = null;
+            last = null;
+            return res;
         }
         ListNode temp = last;
         last = last.prev;
