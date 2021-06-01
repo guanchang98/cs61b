@@ -1,4 +1,5 @@
 public class LinkedListDeque<T> {
+    /** Creates an empty class of array deque*/
     private ListNode first;
     private ListNode last;
     private int size;
@@ -13,7 +14,7 @@ public class LinkedListDeque<T> {
             this.prev = prev;
         }
     }
-
+    /** First constructor of the deque*/
     public LinkedListDeque() {
         size = 0;
     }
@@ -132,12 +133,12 @@ public class LinkedListDeque<T> {
         }
     }
     /** Gets the item at the given index recursively*/
-    public T getRecursively(int index) {
+    public T getRecursive(int index) {
         ListNode tmp = first;
         if (tmp == null) return null;
         return helperGet(index, tmp);
     }
-    public T helperGet(int index, ListNode first) {
+    private T helperGet(int index, ListNode first) {
         if (index == 0) return first.item;
         first = first.next;
         return helperGet(index - 1, first);

@@ -96,7 +96,7 @@ public class LinkedListDequeTest {
 		lld1.addLast(5);
 		lld1.printDeque();
 		int ite = lld1.get(3);
-		int rec = lld1.getRecursively(3);
+		int rec = lld1.getRecursive(3);
 		if (ite == 3) {
 			System.out.println("Iterative passed");
 		} else {
