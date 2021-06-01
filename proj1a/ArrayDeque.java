@@ -25,10 +25,10 @@ public class ArrayDeque<T> {
     /** Resize the array items*/
     private void resize(int cap) {
         T[] temp = (T[]) new Object[cap];
-        System.arraycopy(items, first, temp, cap / 2 - items.length / 2 + first, last - first);
-        items = temp;
+        System.arraycopy(items, first + 1, temp, cap / 2 - items.length / 2 + first + 1, last - first - 1);
         first = cap / 2 - items.length / 2 + first;
         last = cap / 2 - items.length / 2 + last;
+        items = temp;
     }
 
     /** Adds an item of type T to the front of the array deque*/
@@ -37,8 +37,8 @@ public class ArrayDeque<T> {
             resize(items.length * 2);
         }
         items[first] = item;
-        size++;
         first--;
+        size++;
     }
 
     /** Adds an item of type T to the back of the array deque*/
@@ -47,8 +47,8 @@ public class ArrayDeque<T> {
             resize(items.length * 2);
         }
         items[last] = item;
-        size++;
         last++;
+        size++;
     }
 
     /** Return true if the deque is empty, false otherwise*/
@@ -64,8 +64,8 @@ public class ArrayDeque<T> {
     /** Print the items in the deque from first to last, separated by a space
      * Once all the items have been printed, print out a new line*/
      public void printDeque() {
-         for (int i = first + 1; i < last; i++) {
-             System.out.print(items[i] + "/t");
+         for (int i = 0; i < items.length; i++) {
+             System.out.print(items[i] + "\t");
          }
          System.out.println();
      }
@@ -110,6 +110,4 @@ public class ArrayDeque<T> {
     public T get(int index) {
         return items[first + 1 + index];
     }
-
-
 }
