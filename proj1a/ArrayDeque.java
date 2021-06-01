@@ -1,12 +1,16 @@
 public class ArrayDeque<T> {
     /** Creates an empty array deque*/
     private int size;
+    private int first;
+    private int last;
     private T[] items;
 
     /** First constructor of array deque*/
     public ArrayDeque() {
         size = 0;
         items = (T[]) new Object[8];
+        first = items.length / 2 - 1;
+        last = items.length / 2;
     }
 
     /** Second constructor of array deque
@@ -21,29 +25,28 @@ public class ArrayDeque<T> {
     /** Resize the array items*/
     private void resize(int cap) {
         T[] temp = (T[]) new Object[cap];
-        System.arraycopy(items, 0, temp, 0, size);
+        System.arraycopy(items, 0, temp, cap / 2 - items.length / 2 + first, last - first + 1);
         items = temp;
     }
 
     /** Adds an item of type T to the front of the array deque*/
     public void addFirst(T item) {
-        if (size == items.length) {
-            resize(size * 2);
+        if (first == 0) {
+            resize(items.length * 2);
         }
-        for (int i = size; i > 0; i--) {
-            items[i] = items[i - 1];
-        }
-        items[0] = item;
+        items[first] = item;
         size++;
+        first--;
     }
 
     /** Adds an item of type T to the back of the array deque*/
     public void addLast(T item) {
-        if (size == items.length) {
-            resize(size * 2);
+        if (last == items.length) {
+            resize(items.length * 2);
         }
-        items[size] = item;
+        items[last] = item;
         size++;
+        last++;
     }
 
     /** Return true if the deque is empty, false otherwise*/
@@ -75,12 +78,10 @@ public class ArrayDeque<T> {
         if (size < items.length / 4) {
             resize(items.length / 2);
         }
-        T res = items[0];
-        for (int i = 0; i < size - 1; i++) {
-            items[i] = items[i + 1];
-        }
-        items[size - 1] = null;
+        T res = items[first];
+        items[first] = null;
         size--;
+        first++;
         return res;
     }
 
@@ -94,9 +95,10 @@ public class ArrayDeque<T> {
         if (size < items.length / 4) {
             resize(items.length / 2);
         }
-        T res = items[size - 1];
-        items[size - 1] = null;
+        T res = items[last];
+        items[last] = null;
         size--;
+        last--;
         return res;
     }
 
@@ -107,8 +109,5 @@ public class ArrayDeque<T> {
         return items[index];
     }
 
-    /** Get the item at the given index recursively*/
-    /*public T getRecursive(int index) {
 
-    }*/
 }
