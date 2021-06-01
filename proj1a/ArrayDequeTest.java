@@ -100,6 +100,16 @@ public class ArrayDequeTest {
         lld1.printDeque();
         lld1.addLast(5);
         lld1.printDeque();
+        lld1.removeLast();
+        lld1.printDeque();
+        lld1.removeFirst();
+        lld1.printDeque();
+        lld1.removeFirst();
+        lld1.printDeque();
+        lld1.removeFirst();
+        lld1.printDeque();
+        lld1.removeFirst();
+        lld1.printDeque();
         int ite = lld1.get(3);
         //int rec = lld1.getRecursive(3);
         if (ite == 3) {
