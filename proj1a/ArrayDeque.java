@@ -25,7 +25,7 @@ public class ArrayDeque<T> {
     /** Resize the array items*/
     private void resize(int cap) {
         T[] temp = (T[]) new Object[cap];
-        System.arraycopy(items, first, temp, cap / 2 - items.length / 2 + first, last - first + 1);
+        System.arraycopy(items, first, temp, cap / 2 - items.length / 2 + first, last - first);
         items = temp;
         first = cap / 2 - items.length / 2 + first;
         last = cap / 2 - items.length / 2 + last;
