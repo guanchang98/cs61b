@@ -19,4 +19,9 @@ public class Palindrome {
         }
         return true;
     }
+
+    /** New method to check if the word is palindrome*/
+    public boolean isPalindrome(String word, CharacterComparator cc) {
+        
+    }
 }
