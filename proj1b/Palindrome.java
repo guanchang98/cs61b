@@ -1,7 +1,7 @@
 public class Palindrome {
     /** Change word to deque in same order*/
     public Deque<Character> wordToDeque(String word) {
-        Deque<Character> deque = new ArrayDeque<>();
+        Deque<Character> deque = new ArrayDeque<Character>();
         for (int i = 0; i < word.length(); i++) {
             char cur = word.charAt(i);
             deque.addLast(cur);
