@@ -1,4 +1,6 @@
-public class ArrayDeque<T> implements Deque<T> {
+import java.util.ArrayList;
+
+public class ArrayDeque<T> extends ArrayList<T> implements Deque<T> {
     /** Creates an empty array deque*/
     private int size;
     private int first;
