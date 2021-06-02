@@ -17,7 +17,7 @@ public class TestPalindrome {
     }
 
     @Test
-    public void testIsPalindrome(){
+    public void testIsPalindrome() {
         String a = "big";
         assertEquals(false, palindrome.isPalindrome(a));
         String b = "ala";
@@ -27,7 +27,7 @@ public class TestPalindrome {
     }
 
     @Test
-    public void testIsPalindrome2(){
+    public void testIsPalindrome2() {
         String a = "big";
         assertEquals(false, palindrome.isPalindrome(a, new OffByOne()));
         String b = "alb";

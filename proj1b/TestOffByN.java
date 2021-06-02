@@ -7,11 +7,11 @@ public class TestOffByN {
     static CharacterComparator offByN = new OffByN(5);
 
     @Test
-    public void TestEqualChars() {
+    public void testEqualChars() {
         assertEquals(true, offByN.equalChars('a', 'f'));
         assertEquals(false, offByN.equalChars('a', 'a'));
         assertEquals(true, offByN.equalChars('f', 'a'));
-        assertEquals(false, offByN.equalChars('a', 'u'));
+        assertEquals(false, offByN.equalChars('A', 'F'));
     }
     // Your tests go here.
 }
