@@ -25,4 +25,14 @@ public class TestPalindrome {
         String c = "sksks";
         assertEquals(true, palindrome.isPalindrome(c));
     }
+
+    @Test
+    public void testIsPalindrome2(){
+        String a = "big";
+        assertEquals(false, palindrome.isPalindrome(a, new OffByOne()));
+        String b = "alb";
+        assertEquals(true, palindrome.isPalindrome(b, new OffByOne()));
+        String c = "rlsks";
+        assertEquals(true, palindrome.isPalindrome(c, new OffByOne()));
+    }
 }

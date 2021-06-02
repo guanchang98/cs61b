@@ -22,6 +22,14 @@ public class Palindrome {
 
     /** New method to check if the word is palindrome*/
     public boolean isPalindrome(String word, CharacterComparator cc) {
-        
+        int l = word.length();
+        for (int i = 0; i < l / 2; i++) {
+            char front = word.charAt(i);
+            char back = word.charAt(l - 1 - i);
+            if (!cc.equalChars(front, back)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
