@@ -11,7 +11,7 @@ public class TestOffByN {
         assertEquals(true, offByN.equalChars('a', 'f'));
         assertEquals(false, offByN.equalChars('a', 'a'));
         assertEquals(true, offByN.equalChars('f', 'a'));
-        assertEquals(false, offByN.equalChars('A', 'F'));
+        assertEquals(false, offByN.equalChars('a', 'F'));
     }
     // Your tests go here.
 }
