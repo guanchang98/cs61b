@@ -7,6 +7,7 @@ public class TestArrayDequeGold {
         ArrayDequeSolution<Integer> ads = new ArrayDequeSolution<>();
         Integer sadres;
         Integer adsres;
+        String res = "\n";
         while(true) {
             double numberBetweenZeroToOne = StdRandom.uniform();
             Integer random = StdRandom.uniform(10);
@@ -14,27 +15,31 @@ public class TestArrayDequeGold {
                 if (numberBetweenZeroToOne < 0.5) {
                     sad.addFirst(random);
                     ads.addFirst(random);
+                    res += "addFirst(" + random + ")" + "\n";
                 } else {
                     sad.addLast(random);
                     ads.addLast(random);
+                    res += "addLast(" + random + ")" + "\n";
                 }
             } else {
                 if (numberBetweenZeroToOne < 0.25) {
                     sad.addFirst(random);
                     ads.addFirst(random);
+                    res += "addFirst(" + random + ")" + "\n";
                 } else if (numberBetweenZeroToOne < 0.5) {
                     sad.addLast(random);
                     ads.addLast(random);
+                    res += "addLast(" + random + ")" + "\n";
                 } else if (numberBetweenZeroToOne < 0.75) {
                     sadres = sad.removeFirst();
                     adsres = ads.removeFirst();
-                    assertEquals("StudentArrayDeque is" + " " + sadres + " " +
-                            "but ArrayDequeSolution is" + " " + adsres, adsres, sadres);
+                    res += "removeFirst()" + "\n";
+                    assertEquals(res, adsres, sadres);
                 } else {
                     sadres = sad.removeLast();
                     adsres = ads.removeLast();
-                    assertEquals("StudentArrayDeque is" + " " + sadres + " " +
-                            "but ArrayDequeSolution is" + " " + adsres, adsres, sadres);
+                    res += "removeLast()" + "\n";
+                    assertEquals(res, adsres, sadres);
                 }
             }
         }
