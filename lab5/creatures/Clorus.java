@@ -27,6 +27,9 @@ public class Clorus extends Creature {
         b = 231;
         energy = e;
     }
+    public Clorus() {
+        this(1);
+    }
 
     public Color color() {
         return color(r, g, b);
