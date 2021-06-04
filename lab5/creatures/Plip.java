@@ -1,13 +1,14 @@
 package creatures;
 
+import edu.princeton.cs.algs4.StdRandom;
 import huglife.Creature;
 import huglife.Direction;
 import huglife.Action;
 import huglife.Occupant;
 
 import java.awt.Color;
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,15 +30,35 @@ public class Plip extends Creature {
      * blue color.
      */
     private int b;
+    /**
+     * lose units energy on action
+     */
+    private double loseEnergyOnAction = 0.15;
+    /**
+     * gain units energy on stay
+     */
+    private double gainEnergyOnStay = 0.2;
+    /**
+     * energy retained after reproduction
+     */
+    private double repEnergyRetained = 0.5;
+    /**
+     * energy given to spring
+     */
+    private double repEnergyGiven = 0.5;
+    /**
+     * probability of moving
+     */
+    private double moveProbability = 0.5;
 
     /**
      * creates plip with energy equal to E.
      */
     public Plip(double e) {
         super("plip");
-        r = 0;
-        g = 0;
-        b = 0;
+        r = 99;
+        g = 63;
+        b = 76;
         energy = e;
     }
 
@@ -57,7 +78,7 @@ public class Plip extends Creature {
      * that you get this exactly correct.
      */
     public Color color() {
-        g = 63;
+        g = 63 + (int) (96 * energy);
         return color(r, g, b);
     }
 
@@ -75,6 +96,9 @@ public class Plip extends Creature {
      */
     public void move() {
         // TODO
+        energy -= loseEnergyOnAction;
+        energy = Math.max(0, energy);
+        energy = Math.min(2, energy);
     }
 
 
@@ -83,6 +107,9 @@ public class Plip extends Creature {
      */
     public void stay() {
         // TODO
+        energy += gainEnergyOnStay;
+        energy = Math.max(0, energy);
+        energy = Math.min(2, energy);
     }
 
     /**
@@ -91,7 +118,9 @@ public class Plip extends Creature {
      * Plip.
      */
     public Plip replicate() {
-        return this;
+        double springEnergy = energy * repEnergyGiven;
+        energy = energy * repEnergyRetained;
+        return new Plip(springEnergy);
     }
 
     /**
@@ -109,21 +138,51 @@ public class Plip extends Creature {
      */
     public Action chooseAction(Map<Direction, Occupant> neighbors) {
         // Rule 1
-        Deque<Direction> emptyNeighbors = new ArrayDeque<>();
+        List<Direction> emptyNeighbors = new ArrayList<>();
         boolean anyClorus = false;
         // TODO
         // (Google: Enhanced for-loop over keys of NEIGHBORS?)
         // for () {...}
-
-        if (false) { // FIXME
-            // TODO
+        for (Direction key : neighbors.keySet()) {
+            if (neighbors.get(key).name().equals("empty")) {
+                emptyNeighbors.add(key);
+            }
+            if (neighbors.get(key).name().equals("clorus")) {
+                anyClorus = true;
+            }
         }
+        if (emptyNeighbors.isEmpty()) {
+            return new Action(Action.ActionType.STAY);
+        }
+        /*if (!neighbors.get(Direction.TOP).name().equals("empty") &&
+                !neighbors.get(Direction.BOTTOM).name().equals("empty") &&
+                !neighbors.get(Direction.RIGHT).name().equals("empty") &&
+                !neighbors.get(Direction.LEFT).name().equals("empty")) {
+            return new Action(Action.ActionType.STAY);
+        }*/
+        /*if (false) { // FIXME
+            // TODO
+        }*/
 
         // Rule 2
         // HINT: randomEntry(emptyNeighbors)
 
-        // Rule 3
+        if (energy >= 1.0) {
+            int size = emptyNeighbors.size();
+            int index = StdRandom.uniform(size);
+            Direction d = emptyNeighbors.get(index);
+            return new Action(Action.ActionType.REPLICATE, d);
+        }
 
+        // Rule 3
+        if (anyClorus) {
+            int size = emptyNeighbors.size();
+            int index = StdRandom.uniform(size);
+            Direction d = emptyNeighbors.get(index);
+            if (Math.random() < moveProbability) {
+                return new Action(Action.ActionType.MOVE, d);
+            }
+        }
         // Rule 4
         return new Action(Action.ActionType.STAY);
     }
