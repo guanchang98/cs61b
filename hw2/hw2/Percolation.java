@@ -47,7 +47,7 @@ public class Percolation {
             throw new IndexOutOfBoundsException();
         }
         for (int i = 0; i < grid.length; i++) {
-            if (uf.connected(row * grid.length + col, i)) {
+            if (grid[row][col] == 1 && uf.connected(row * grid.length + col, i)) {
                 return true;
             }
         }
