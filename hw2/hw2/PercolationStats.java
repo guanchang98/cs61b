@@ -39,12 +39,4 @@ public class PercolationStats {
                 / Math.sqrt(samples.length);
         return res;
     }                                // high endpoint of 95% confidence interval
-    public static void main(String[] args) {
-        PercolationFactory pf = new PercolationFactory();
-        PercolationStats ps = new PercolationStats(4, 50, pf);
-        System.out.println(ps.mean());
-        System.out.println(ps.stddev());
-        System.out.println(ps.confidenceHigh());
-        System.out.println(ps.confidenceLow());
-    }
 }
