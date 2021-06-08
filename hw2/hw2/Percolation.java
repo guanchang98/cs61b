@@ -58,10 +58,8 @@ public class Percolation {
     }          // number of open sites
     public boolean percolates() {
         for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid.length; j++) {
-                if (uf.connected(i, (grid.length - 1) * grid.length + j)) {
-                    return true;
-                }
+            if (isFull(grid.length - 1, i)) {
+                return true;
             }
         }
         return false;
