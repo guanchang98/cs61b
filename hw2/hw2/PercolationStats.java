@@ -10,9 +10,8 @@ public class PercolationStats {
             throw new IllegalArgumentException();
         }
         samples = new double[T];
-        Percolation p = pf.make(N);
         for (int i = 0; i < T; i++) {
-            p = pf.make(N);
+            Percolation p = pf.make(N);
             while (!p.percolates()) {
                 int random = StdRandom.uniform(N * N);
                 int row = random / N;
@@ -40,4 +39,12 @@ public class PercolationStats {
                 / Math.sqrt(samples.length);
         return res;
     }                                // high endpoint of 95% confidence interval
+    public static void main(String[] args) {
+        PercolationFactory pf = new PercolationFactory();
+        PercolationStats ps = new PercolationStats(4, 50, pf);
+        System.out.println(ps.mean());
+        System.out.println(ps.stddev());
+        System.out.println(ps.confidenceHigh());
+        System.out.println(ps.confidenceLow());
+    }
 }
