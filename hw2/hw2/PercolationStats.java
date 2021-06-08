@@ -9,17 +9,20 @@ public class PercolationStats {
         if (N <= 0 || T <= 0) {
             throw new IllegalArgumentException();
         }
-        pf = new PercolationFactory();
         samples = new double[T];
         Percolation p = pf.make(N);
         for (int i = 0; i < T; i++) {
+            pf = new PercolationFactory();
+            p = pf.make(N);
             while (!p.percolates()) {
                 int random = StdRandom.uniform(N * N);
                 int row = random / N;
                 int col = random - N * row;
                 p.open(row, col);
             }
-            samples[i] = p.numberOfOpenSites() / (N * N);
+            double sample = p.numberOfOpenSites() / (double) (N * N);
+            //System.out.println(sample);
+            samples[i] = sample;
         }
     }  // perform T independent experiments on an N-by-N grid
     public double mean() {
@@ -36,4 +39,12 @@ public class PercolationStats {
         double res = StdStats.mean(samples) + 1.96 * StdStats.stddev(samples) / Math.sqrt(samples.length);
         return res;
     }                                // high endpoint of 95% confidence interval
+    public static void main(String[] args) {
+        PercolationFactory pf = new PercolationFactory();
+        PercolationStats ps = new PercolationStats(4, 50, pf);
+        System.out.println(ps.mean());
+        System.out.println(ps.stddev());
+        System.out.println(ps.confidenceHigh());
+        System.out.println(ps.confidenceLow());
+    }
 }
