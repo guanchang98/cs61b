@@ -13,6 +13,10 @@ public class Percolation {
         grid = new int[N][N];
         uf = new WeightedQuickUnionUF(N * N);
         numberOfOpen = 0;
+        for (int i = 0; i < N - 1; i++) {
+            uf.union(i, i + 1);
+            uf.union(N * (N - 1) + i, N * (N - 1) + i + 1);
+        }
     }                // create N-by-N grid, with all sites initially blocked
     public void open(int row, int col) {
         if (row < 0 || col < 0 || row >= grid.length || col >= grid.length) {
@@ -54,23 +58,13 @@ public class Percolation {
         if (row < 0 || col < 0 || row >= grid.length || col >= grid.length) {
             throw new IndexOutOfBoundsException();
         }
-        for (int i = 0; i < grid.length; i++) {
-            if (grid[row][col] == 1 && uf.connected(row * grid.length + col, i)) {
-                return true;
-            }
-        }
-        return false;
+        return grid[row][col] == 1 && uf.connected(0, row * grid.length + col);
     } // is the site (row, col) full?
     public int numberOfOpenSites() {
         return numberOfOpen;
     }          // number of open sites
     public boolean percolates() {
-        for (int i = 0; i < grid.length; i++) {
-            if (grid[0][i] == 1 && isFull(grid.length - 1, i)) {
-                return true;
-            }
-        }
-        return false;
+        return uf.connected(0, grid.length * (grid.length) - 1);
     }             // does the system percolate?
     public static void main(String[] args) {
 
