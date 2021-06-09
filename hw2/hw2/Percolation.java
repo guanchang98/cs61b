@@ -59,7 +59,7 @@ public class Percolation {
         }
         int rootIdx = uf.find(row * n + col);
         state[rootIdx] = (byte) (state[rootIdx] | state[row * n + col]);
-        if (7 == (byte)(state[rootIdx] & 7)) {
+        if (7 == (byte) (state[rootIdx] & 7)) {
             percolate = true;
         }
     }      // open the site (row, col) if it is not open already
