@@ -24,16 +24,24 @@ public class Percolation {
         grid[row][col] = 1;
         int l = grid.length;
         if (row > 0 && grid[row - 1][col] == 1) {
-            uf.union(row * l + col, (row - 1) * l + col);
+            if (uf.find(row * l + col) != uf.find((row - 1) * l + col)) {
+                uf.union(row * l + col, (row - 1) * l + col);
+            }
         }
         if (row < l - 1 && grid[row + 1][col] == 1) {
-            uf.union(row * l + col, (row + 1) * l + col);
+            if (uf.find(row * l + col) != uf.find((row + 1) * l + col)){
+                uf.union(row * l + col, (row + 1) * l + col);
+            }
         }
         if (col > 0 && grid[row][col - 1] == 1) {
-            uf.union(row * l + col, row * l + col - 1);
+            if (uf.find(row * l + col) != uf.find(row * l + col - 1)) {
+                uf.union(row * l + col, row * l + col - 1);
+            }
         }
         if (col < l - 1 && grid[row][col + 1] == 1) {
-            uf.union(row * l + col, row * l + col + 1);
+            if (uf.find(row * l + col) != uf.find(row * l + col + 1)) {
+                uf.union(row * l + col, row * l + col + 1);
+            }
         }
     }      // open the site (row, col) if it is not open already
     public boolean isOpen(int row, int col) {
@@ -58,7 +66,7 @@ public class Percolation {
     }          // number of open sites
     public boolean percolates() {
         for (int i = 0; i < grid.length; i++) {
-            if (isFull(grid.length - 1, i)) {
+            if (grid[0][i] == 1 && isFull(grid.length - 1, i)) {
                 return true;
             }
         }
