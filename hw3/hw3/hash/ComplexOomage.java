@@ -79,18 +79,6 @@ public class ComplexOomage implements Oomage {
         return new ComplexOomage(params);
     }
 
-    public static ComplexOomage deadlyRandom() {
-        int N = StdRandom.uniform(4, 10);
-        List<Integer> dead = new ArrayList<>(N);
-        for (int i = 4; i < N; i++) {
-            dead.add(StdRandom.uniform(0, 255));
-        }
-        dead.add(24);
-        dead.add(138);
-        dead.add(245);
-        dead.add(64);
-        return new ComplexOomage(dead);
-    }
 
 
     public static void main(String[] args) {
