@@ -8,7 +8,6 @@ import edu.princeton.cs.algs4.StdRandom;
 public class ComplexOomage implements Oomage {
     protected List<Integer> params;
     private static final double WIDTH = 0.05;
-
     @Override
     public int hashCode() {
         int total = 0;
@@ -79,6 +78,20 @@ public class ComplexOomage implements Oomage {
         }
         return new ComplexOomage(params);
     }
+
+    public static ComplexOomage deadlyRandom() {
+        int N = StdRandom.uniform(4, 10);
+        List<Integer> dead = new ArrayList<>(N);
+        for (int i = 4; i < N; i++) {
+            dead.add(StdRandom.uniform(0, 255));
+        }
+        dead.add(24);
+        dead.add(138);
+        dead.add(245);
+        dead.add(64);
+        return new ComplexOomage(dead);
+    }
+
 
     public static void main(String[] args) {
         System.out.println("Drawing 4 random complex Oomages.");
