@@ -77,7 +77,7 @@ public class MyTrieSet implements TrieSet61B {
         }
         for (int c = 0; c < N; c++) {
             if (x.next[c] != null) {
-                colHelp(x.next[c], sb.append((char)c), keys);
+                colHelp(x.next[c], sb.append((char) c), keys);
                 sb.deleteCharAt(sb.length() - 1);
             }
         }
