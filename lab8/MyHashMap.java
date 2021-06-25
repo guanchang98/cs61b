@@ -1,4 +1,4 @@
-import java.util.*;
+
 
 public class MyHashMap<K, V> implements Map61B<K, V> {
 
@@ -10,12 +10,18 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
 
     public MyHashMap() {
         map = new ArrayList<>(initialSize);
+        for (int i = 0; i < initialSize; i++) {
+            map.add(new ArrayList<>());
+        }
         keySet = new HashSet<>();
     }
 
     public MyHashMap(int initialSize) {
         this.initialSize = initialSize;
         map = new ArrayList<>(initialSize);
+        for (int i = 0; i < initialSize; i++) {
+            map.add(new ArrayList<>());
+        }
         keySet = new HashSet<>();
     }
 
@@ -23,6 +29,9 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
         this.initialSize = initialSize;
         this.loadFactor = loadFactor;
         map = new ArrayList<>(initialSize);
+        for (int i = 0; i < initialSize; i++) {
+            map.add(new ArrayList<>());
+        }
         keySet = new HashSet<>();
     }
 
@@ -46,7 +55,11 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     @Override
     public void clear() {
         size = 0;
-        map = new ArrayList<>(16);
+        initialSize = 16;
+        map = new ArrayList<>(initialSize);
+        for (int i = 0; i < initialSize; i++) {
+            map.add(new ArrayList<>());
+        }
     }
 
     /** Returns true if this map contains a mapping for the specified key. */
@@ -67,7 +80,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
         int index = hash(key);
         ArrayList<Entry> cur = map.get(index);
         for (Entry e : cur) {
-            if (e.key == key) {
+            if (e.key.equals(key)) {
                 return e.val;
             }
         }
@@ -112,6 +125,9 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     private void resize() {
         initialSize = 2 * initialSize;
         ArrayList<ArrayList<Entry>> newMap = new ArrayList<>(initialSize);
+        for (int i = 0; i < initialSize; i++) {
+            newMap.add(new ArrayList<>());
+        }
         for (ArrayList<Entry> bucket : map) {
             for (Entry e : bucket) {
                 int index = hash(e.key);

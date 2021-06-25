@@ -1,7 +1,9 @@
-import static org.junit.Assert.*;
 import org.junit.Test;
+
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.junit.Assert.*;
 
 /** Tests by Brendan Hu, Spring 2015, revised for 2016 by Josh Hug */
 public class TestMyHashMap {
@@ -26,7 +28,7 @@ public class TestMyHashMap {
             b.put("hi" + i, 1);
             //make sure put is working via containsKey and get
             assertTrue(null != b.get("hi" + i)
-                        && b.containsKey("hi" + i)); 
+                        && b.containsKey("hi" + i));
         }
         b.clear();
         assertEquals(0, b.size());
